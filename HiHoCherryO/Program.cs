@@ -10,18 +10,20 @@ namespace HiHoCherryO
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Press enter to take your turn\n");
+
             Game game = new Game();
 
             while (true)
             {
                 var tree = game.GetTree();
 
-                Console.WriteLine(tree.Color + " tree's turn...");
+                Console.WriteLine(tree.Color + " tree's turn");
                 Console.ReadLine();
 
                 var action = game.TakeTurn();
 
-                Console.WriteLine(tree.Color + " got a " + action.Name + "! It has " + tree.Count() + " cherries left\n");
+                Console.WriteLine(">>> Got a " + action.Name + "! " + tree.Count() + " cherries left\n");
 
                 if (tree.IsEmpty())
                 {
