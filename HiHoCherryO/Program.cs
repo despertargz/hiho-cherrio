@@ -86,9 +86,9 @@ namespace HiHoCherryO
     {
         private int Max = 10;
 
-        public string Color;
-
         private List<Cherry> Cherries = new List<Cherry>();
+
+        public string Color;
 
         public Tree(string color)
         {
@@ -170,9 +170,9 @@ namespace HiHoCherryO
 
     class Spinner
     {
-        Random Random = new Random();
+        private Random Random = new Random();
 
-        Action[] Actions = new Action[]
+        private Action[] Actions = new Action[]
         {
             new Action() { Name = "Dog", Value = -2 },
             new Action() { Name = "Bird", Value = -2 },
@@ -197,39 +197,3 @@ namespace HiHoCherryO
         public int Value;
     }
 }
-
-/*
- * game
-	int turn = 0
-	while(true)
-		turn++
-		tree = get tree(turn)
-		option = spinner.spin()
-		cherries = tree.remove(option.value)
-		basket.add(cherries)
-		
-
-trees
-
-tree
-	max (int)
-	color
-	cherries[]
-	remove(n)
-	add(n)
-	
-basket
-	add(cherries[])
-	cherries[]
-	
-cherry
-	color
-	
-spinner
-	spin()
-	options[]
-	
-option
-	value (int)
-	name
-*/
