@@ -8,45 +8,13 @@ namespace HiHoCherryO
 {
     class Program
     {
-        static Tree[] Trees;
-
-        static Program()
-        {
-            Trees = new Tree[]
-            {
-                new Tree("Red"),
-                new Tree("Blue"),
-                new Tree("Green")
-            };
-        }
-
         static void Main(string[] args)
         {
-            var spinner = new Spinner();
-            int turn = 0;
-            var basket = new Basket();
+            Game game = new Game();
 
             while (true)
             {
-                turn++;
-
-                var tree = GetTree(turn);
-                Console.WriteLine(tree.Color + " tree's turn...");
-                Console.ReadLine();
-
-                var action = spinner.Spin();
-                Console.WriteLine("Got a " + action.Name + "!");
-
-                if (action.Value > 0)
-                {
-                    var cherries = tree.Remove(action.Value);
-                    basket.Add(cherries);
-                }
-                else
-                {
-                    var cherries = basket.Remove(tree.Color, Math.Abs(action.Value));
-                    tree.Add(cherries);
-                }
+                var tree = game.TakeTurn();
 
                 if (tree.Count() == 0)
                 {
@@ -64,33 +32,68 @@ namespace HiHoCherryO
             Console.ReadLine();
         }
 
-        static Tree GetTree(int turn)
-        {
-            int index = turn % Trees.Count();
-            return Trees[index];
-        }
+
     }
 
     class Game
     {
+        private int Turn = 0;
+
         public Tree[] Trees;
-        public Basket Basket;
 
-        private Spinner Spinner;
+        public Basket Basket = new Basket();
 
-        public void TakeTurn()
+        private Spinner Spinner = new Spinner();
+
+        public Game()
         {
+            Trees = new Tree[]
+            {
+                new Tree("Red"),
+                new Tree("Blue"),
+                new Tree("Green")
+            };
+        }
 
+        private Tree GetTree()
+        {
+            int index = this.Turn % Trees.Count();
+            return Trees[index];
+        }
+
+        public Tree TakeTurn()
+        {
+            Turn++;
+
+            var tree = GetTree();
+            Console.WriteLine(tree.Color + " tree's turn...");
+            Console.ReadLine();
+
+            var action = this.Spinner.Spin();
+            Console.WriteLine("Got a " + action.Name + "!");
+
+            if (action.Value > 0)
+            {
+                var cherries = tree.Remove(action.Value);
+                this.Basket.Add(cherries);
+            }
+            else
+            {
+                var cherries = this.Basket.Remove(tree.Color, Math.Abs(action.Value));
+                tree.Add(cherries);
+            }
+
+            return tree;
         }
     }
 
     class Tree
     {
-        int Max = 10;
+        private int Max = 10;
 
         public string Color;
 
-        List<Cherry> Cherries = new List<Cherry>();
+        private List<Cherry> Cherries = new List<Cherry>();
 
         public Tree(string color)
         {
@@ -136,7 +139,7 @@ namespace HiHoCherryO
 
     class Basket
     {
-        List<Cherry> Cherries = new List<Cherry>();
+        private List<Cherry> Cherries = new List<Cherry>();
 
         public void Add(Cherry[] cherries)
         {
