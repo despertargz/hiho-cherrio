@@ -16,14 +16,9 @@ namespace HiHoCherryO
 
         public Basket Basket = new Basket();
 
-        public Game()
+        public Game(string[] colors)
         {
-            Trees = new Tree[]
-            {
-                new Tree("Red"),
-                new Tree("Blue"),
-                new Tree("Green")
-            };
+            Trees = colors.Select(o => new Tree(o)).ToArray();
         }
 
         public Tree GetTree()

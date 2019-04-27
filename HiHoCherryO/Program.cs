@@ -12,7 +12,7 @@ namespace HiHoCherryO
         {
             Console.WriteLine("Press enter to take your turn\n");
 
-            Game game = new Game();
+            Game game = new Game(new string[] { "Purple", "Orange", "Green", "Red" });
 
             while (true)
             {
