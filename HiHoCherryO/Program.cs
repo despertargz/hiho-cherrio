@@ -14,36 +14,35 @@ namespace HiHoCherryO
 
             while (true)
             {
-                var tree = game.TakeTurn();
+                var tree = game.GetTree();
+
+                Console.WriteLine(tree.Color + " tree's turn...");
+                Console.ReadLine();
+
+                var action = game.TakeTurn();
+
+                Console.WriteLine(tree.Color + " got a " + action.Name + "! It has " + tree.Count() + " cherries left\n");
 
                 if (tree.Count() == 0)
                 {
                     Console.WriteLine(tree.Color + " tree wins!");
                     break;
                 }
-                else
-                {
-                    Console.WriteLine(tree.Color + " has " + tree.Count() + " cherries left\n");
-                    //basket.PrintContents();
-                }
             }
 
-            Console.WriteLine("Game is finished!");
             Console.ReadLine();
         }
-
-
     }
 
     class Game
     {
         private int Turn = 0;
 
+        private Spinner Spinner = new Spinner();
+
         public Tree[] Trees;
 
         public Basket Basket = new Basket();
-
-        private Spinner Spinner = new Spinner();
 
         public Game()
         {
@@ -55,22 +54,17 @@ namespace HiHoCherryO
             };
         }
 
-        private Tree GetTree()
+        public Tree GetTree()
         {
             int index = this.Turn % Trees.Count();
             return Trees[index];
         }
 
-        public Tree TakeTurn()
+        public Action TakeTurn()
         {
-            Turn++;
-
             var tree = GetTree();
-            Console.WriteLine(tree.Color + " tree's turn...");
-            Console.ReadLine();
 
             var action = this.Spinner.Spin();
-            Console.WriteLine("Got a " + action.Name + "!");
 
             if (action.Value > 0)
             {
@@ -83,7 +77,8 @@ namespace HiHoCherryO
                 tree.Add(cherries);
             }
 
-            return tree;
+            this.Turn++;
+            return action;
         }
     }
 
