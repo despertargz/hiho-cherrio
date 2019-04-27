@@ -23,7 +23,7 @@ namespace HiHoCherryO
 
         public Action Spin()
         {
-            int spinNumber = Random.Next(7);
+            int spinNumber = Random.Next(this.Actions.Length);
             return this.Actions[spinNumber];
         }
     }

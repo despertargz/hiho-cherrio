@@ -33,4 +33,5 @@ namespace HiHoCherryO
             Console.ReadLine();
         }
     }
+
 }
