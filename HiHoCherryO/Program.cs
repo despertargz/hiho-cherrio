@@ -10,12 +10,7 @@ namespace HiHoCherryO
     {
         static void Main(string[] args)
         {
-            Console.Write("How many players? ");
-            int playerCount = int.Parse(Console.ReadLine());
-
-            string[] possiblePlayers = new string[] { "Green", "Red", "Blue" };
-            string[] players = possiblePlayers.Take(playerCount).ToArray();
-
+            string[] players = GetPlayers();
             Game game = new Game(players);
 
             Console.WriteLine("Press enter to take your turn\n");
@@ -39,6 +34,17 @@ namespace HiHoCherryO
             }
 
             Console.ReadLine();
+        }
+
+        static string[] GetPlayers()
+        {
+            Console.Write("How many players? ");
+            int playerCount = int.Parse(Console.ReadLine());
+
+            string[] possiblePlayers = new string[] { "Green", "Red", "Blue" };
+            string[] players = possiblePlayers.Take(playerCount).ToArray();
+
+            return players;
         }
     }
 
