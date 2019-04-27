@@ -10,9 +10,15 @@ namespace HiHoCherryO
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Press enter to take your turn\n");
+            Console.Write("How many players? ");
+            int playerCount = int.Parse(Console.ReadLine());
 
-            Game game = new Game(new string[] { "Purple", "Orange", "Green", "Red" });
+            string[] possiblePlayers = new string[] { "Green", "Red", "Blue" };
+            string[] players = possiblePlayers.Take(playerCount).ToArray();
+
+            Game game = new Game(players);
+
+            Console.WriteLine("Press enter to take your turn\n");
 
             while (true)
             {
