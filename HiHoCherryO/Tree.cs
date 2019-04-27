@@ -24,6 +24,11 @@ namespace HiHoCherryO
             }
         }
 
+        public bool IsEmpty()
+        {
+            return this.Count() == 0;
+        }
+
         public int Count()
         {
             return this.Cherries.Count;

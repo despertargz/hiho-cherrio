@@ -23,7 +23,7 @@ namespace HiHoCherryO
 
                 Console.WriteLine(tree.Color + " got a " + action.Name + "! It has " + tree.Count() + " cherries left\n");
 
-                if (tree.Count() == 0)
+                if (tree.IsEmpty())
                 {
                     Console.WriteLine(tree.Color + " tree wins!");
                     break;
