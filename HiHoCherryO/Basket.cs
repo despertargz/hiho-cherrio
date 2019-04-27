@@ -30,15 +30,5 @@ namespace HiHoCherryO
 
             return removed.ToArray();
         }
-
-        public void PrintContents()
-        {
-            Console.WriteLine("\nBasket:");
-            foreach (var color in this.Cherries.GroupBy(o => o.Color))
-            {
-                Console.WriteLine(color.Key + ": " + color.Count());
-            }
-            Console.WriteLine();
-        }
     }
 }
